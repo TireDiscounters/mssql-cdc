@@ -6,4 +6,5 @@ internal static class CdcFieldName
     public const string SeqVal = "__$seqval";
     public const string Operation = "__$operation";
     public const string UpdateMask = "__$update_mask";
+    public const string CommandId = "__$command_id";
 }

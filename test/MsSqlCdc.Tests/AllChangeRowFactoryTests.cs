@@ -34,7 +34,9 @@ public class AllChangeRowFactoryTests
                     {"Id", 10},
                     {"Name",  "Rune"},
                     {"Salary",  20000.00}
-                })
+                },
+                25002L
+                )
         };
 
         yield return new object[]
@@ -58,7 +60,8 @@ public class AllChangeRowFactoryTests
                 new Dictionary<string, object> {
                     {"Id", 1},
                     {"Name", "Simon"},
-                })
+                },
+                25002L)
         };
 
         yield return new object[]
@@ -82,7 +85,8 @@ public class AllChangeRowFactoryTests
                 new Dictionary<string, object>{
                     {"Id",  0},
                     {"Name", "Jesper"},
-                })
+                },
+                25002L)
         };
 
         yield return new object[]
@@ -104,7 +108,8 @@ public class AllChangeRowFactoryTests
                 "dbo_Animal",
                 new Dictionary<string, object>{
                     {"Id", 10},
-                })
+                },
+                25002L)
         };
 
         yield return new object[]
@@ -124,7 +129,8 @@ public class AllChangeRowFactoryTests
                 new byte[128],
                 "dbo_Animal",
                 new Dictionary<string, object>{
-                })
+                },
+                25002L)
         };
 
         yield return new object[]
@@ -144,7 +150,8 @@ public class AllChangeRowFactoryTests
                 new byte[128],
                 "dbo_Animal",
                 new Dictionary<string, object>{
-                })
+                },
+                25002L)
         };
 
         yield return new object[]
@@ -164,7 +171,8 @@ public class AllChangeRowFactoryTests
                 new byte[128],
                 "dbo_Animal",
                 new Dictionary<string, object>{
-                })
+                },
+                25002L)
         };
 
         yield return new object[]
@@ -188,7 +196,8 @@ public class AllChangeRowFactoryTests
                 new Dictionary<string, object>{
                     {"Id", 0},
                     {"Name", "Jesper"},
-                })
+                },
+                25002L)
         };
     }
 

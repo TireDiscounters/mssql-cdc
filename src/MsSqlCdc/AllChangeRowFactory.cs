@@ -23,12 +23,14 @@ internal static class AllChangeRowFactory
                 GetOperation(fields),
                 GetUpdateMask(fields),
                 captureInstance,
-                GetAdditionalFields(fields))
+                GetAdditionalFields(fields),
+                GetCommandId(fields)                
+                )
             : throw new ArgumentException($"The column fields does not contain all the default CDC column fields.");
     }
 
     private static bool HasRequiredFields(IReadOnlyDictionary<string, object> fields)
-        => GetRequiredFields(fields).Count() >= 4;
+        => GetRequiredFields(fields).Count() >= 5;
 
 
     private static byte[] GetUpdateMask(IReadOnlyDictionary<string, object> fields) =>
@@ -65,4 +67,8 @@ internal static class AllChangeRowFactory
             4 => AllChangeOperation.AfterUpdate,
             _ => throw new ArgumentException($"Not valid representation value '{representation}'")
         };
+
+    private static BigInteger GetCommandId(IReadOnlyDictionary<string, object> fields) =>
+        DataConvert.ConvertBinaryLsn((byte[])fields[CdcFieldName.CommandId]);
+
 }

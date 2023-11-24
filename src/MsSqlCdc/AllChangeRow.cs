@@ -50,13 +50,17 @@ public record AllChangeRow
     /// </summary>
     public IReadOnlyDictionary<string, object> Fields { get; init; }
 
+    public BigInteger CommandId { get; init; }
+
+
     public AllChangeRow(
         BigInteger startLineSequenceNumber,
         BigInteger sequenceValue,
         AllChangeOperation operation,
         byte[] updateMask,
         string captureInstance,
-        IReadOnlyDictionary<string, object> fields)
+        IReadOnlyDictionary<string, object> fields,
+        BigInteger commandId)
     {
         if (fields is null)
             throw new ArgumentNullException(nameof(fields), "Cannot be null.");
@@ -69,5 +73,6 @@ public record AllChangeRow
         _updateMask = updateMask;
         CaptureInstance = captureInstance;
         Fields = fields;
+        CommandId = commandId;
     }
 }
