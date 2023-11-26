@@ -42,8 +42,17 @@ internal static class AllChangeRowFactory
     private static BigInteger GetStartLsn(IReadOnlyDictionary<string, object> fields) =>
         DataConvert.ConvertBinaryLsn((byte[])fields[CdcFieldName.StartLsn]);
 
-    private static BigInteger GetCommandId(IReadOnlyDictionary<string, object> fields) =>
-        DataConvert.ConvertBinaryLsn((byte[])fields[CdcFieldName.CommandId]);
+    // Proposed support for with or without CommandId field.
+    #pragma warning disable
+    private static BigInteger GetCommandId(IReadOnlyDictionary<string, object> fields) 
+    {
+/*         if (fields.GetType().GetProperty(CdcFieldName.CommandId) != null) 
+        {
+            return DataConvert.ConvertBinaryLsn((byte[])fields[CdcFieldName.CommandId]);
+        }    */   
+        return -1;
+    }
+    #pragma warning restore
 
     private static bool IsRequiredField(string fieldName) =>
         fieldName is
