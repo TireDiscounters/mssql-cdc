@@ -30,7 +30,7 @@ internal static class AllChangeRowFactory
     }
 
     private static bool HasRequiredFields(IReadOnlyDictionary<string, object> fields)
-        => GetRequiredFields(fields).Count() >= 5;
+        => GetRequiredFields(fields).Count() >= 4;
 
 
     private static byte[] GetUpdateMask(IReadOnlyDictionary<string, object> fields) =>
@@ -42,12 +42,16 @@ internal static class AllChangeRowFactory
     private static BigInteger GetStartLsn(IReadOnlyDictionary<string, object> fields) =>
         DataConvert.ConvertBinaryLsn((byte[])fields[CdcFieldName.StartLsn]);
 
+    private static BigInteger GetCommandId(IReadOnlyDictionary<string, object> fields) =>
+        DataConvert.ConvertBinaryLsn((byte[])fields[CdcFieldName.CommandId]);
+
     private static bool IsRequiredField(string fieldName) =>
         fieldName is
         CdcFieldName.StartLsn or
         CdcFieldName.SeqVal or
         CdcFieldName.Operation or
-        CdcFieldName.UpdateMask;
+        CdcFieldName.UpdateMask or
+        CdcFieldName.CommandId;
 
     private static IEnumerable<KeyValuePair<string, object>> GetRequiredFields(
         IReadOnlyDictionary<string, object> fields) => fields.Where(x => IsRequiredField(x.Key));
